@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio & Research Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0b0c10;
+            --card-bg: rgba(22, 26, 33, 0.7);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --accent-color: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.15);
+            --font-sans: 'Inter', sans-serif;
+            --font-serif: 'Playfair Display', serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(139, 92, 246, 0.05) 0%, transparent 40%);
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-color); }
+        ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.2); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.25rem 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(11, 12, 16, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.8rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 6.5rem 0 2.5rem 0;
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            backdrop-filter: blur(8px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            border-color: rgba(56, 189, 248, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px -10px var(--accent-glow);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            width: fit-content;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-sub {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .card-text {
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+
+        .card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            transition: gap 0.2s;
+        }
+
+        .card-link:hover {
+            gap: 0.7rem;
+        }
+
+        #hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            padding-top: 5rem;
+        }
+
+        .hero-title {
+            font-family: var(--font-serif);
+            font-size: 3.5rem;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #ffffff, var(--text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-bio {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+        }
+
+        .startup-card {
+            background: linear-gradient(135deg, rgba(22, 26, 33, 0.9), rgba(30, 41, 59, 0.5));
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            border-radius: 16px;
+            padding: 2.5rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .cert-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: 10px;
+        }
+
+        .media-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero-title { font-size: 2.5rem; }
+            .startup-card { grid-template-columns: 1fr; padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Kanika Sharma</div>
+        <ul class="nav-links">
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#startup">Startup Work</a></li>
+            <li><a href="#research-papers">Research Papers</a></li>
+            <li><a href="#research-blogs">Research Blogs</a></li>
+            <li><a href="#projects">Projects & Work</a></li>
+            <li><a href="#experiences">Experiences</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#youtube">YouTube</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+
+        <!-- ABOUT ME / HERO -->
+        <section id="about">
+            <div>
+                <span class="badge">Student Researcher & Innovator</span>
+                <h1 class="hero-title">About Me & My Work</h1>
+                <p class="hero-bio">
+                    Welcome! I am a researcher and creator focused on computational biology, neuroscience, and digital health innovations. This platform explicitly showcases my research publications, engineering projects, blog essays, professional experiences, and creative initiatives.
+                </p>
+            </div>
+        </section>
+
+        <!-- CURRENT STARTUP WORK -->
+        <section id="startup">
+            <span class="badge">Current Startup Work</span>
+            <h2 class="section-title">Startup Venture</h2>
+            <p class="section-subtitle">Building next-generation medical research solutions.</p>
+            
+            <div class="startup-card">
+                <div>
+                    <h3 class="card-title" style="font-size: 1.8rem; margin-bottom: 0.75rem;">MoonMed Research</h3>
+                    <p class="card-text">
+                        Spearheading early-stage health technology frameworks and research methodologies aimed at modernizing translational healthcare and computational research workflows.
+                    </p>
+                    <a href="https://moonmedresearch.com" target="_blank" rel="noopener noreferrer" class="card-link" style="margin-top: 1.5rem; font-size: 0.95rem;">
+                        Visit MoonMed Research ↗
+                    </a>
+                </div>
+                <div style="border-left: 1px solid var(--border-color); padding-left: 1.5rem;">
+                    <div style="margin-bottom: 1rem;">
+                        <span style="font-size: 0.8rem; color: var(--text-secondary);">Focus Area</span>
+                        <div style="font-weight: 600;">Health Technology & Medical Research</div>
+                    </div>
+                    <div>
+                        <span style="font-size: 0.8rem; color: var(--text-secondary);">Role</span>
+                        <div style="font-weight: 600;">Founder / Lead Researcher</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MY RESEARCH PAPERS -->
+        <section id="research-papers">
+            <h2 class="section-title">My Research Papers</h2>
+            <p class="section-subtitle">Peer-reviewed manuscripts, literature reviews, and scientific publications.</p>
+            
+            <div class="grid">
+                <div class="card">
+                    <div>
+                        <span class="badge">Neuroscience Review</span>
+                        <h3 class="card-title">Advancing Alzheimer's Therapy Pathways</h3>
+                        <div class="card-sub">Roaring Cubs Collective • Oct 2025 – Jan 2026</div>
+                        <p class="card-text">Comprehensive review of amyloid-β pathways, transcriptomics mechanics, and targeted monoclonal therapies including Lecanemab and Donanemab.</p>
+                    </div>
+                    <a href="#" class="card-link">Read Full Paper ↗</a>
+                </div>
+                <div class="card">
+                    <div>
+                        <span class="badge">Cellular Biology</span>
+                        <h3 class="card-title">Bluelight & Circadian Degradation</h3>
+                        <div class="card-sub">Roaring Cubs Collective • Oct 2024 – Jan 2025</div>
+                        <p class="card-text">Literature synthesis exploring PubMed database metrics regarding retinal cellular health and microscale circadian degradation factors.</p>
+                    </div>
+                    <a href="#" class="card-link">Read Full Paper ↗</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- MY RESEARCH BLOGS -->
+        <section id="research-blogs">
+            <h2 class="section-title">My Research Blogs</h2>
+            <p class="section-subtitle">Technical writing, breakdown essays, and analytical scientific logs.</p>
+            
+            <div class="grid">
+                <div class="card">
+                    <div>
+                        <span class="badge">Blog Entry</span>
+                        <h3 class="card-title">Data Architectures in Computational Biology</h3>
+                        <div class="card-sub">Technical Blog • 6 min read</div>
+                        <p class="card-text">Analyzing multi-variable statistical matrices and their applications in accelerating therapeutic synthesis modeling.</p>
+                    </div>
+                    <a href="#" class="card-link">Read Blog Post ↗</a>
+                </div>
+                <div class="card">
+                    <div>
+                        <span class="badge">Blog Entry</span>
+                        <h3 class="card-title">Astro-Biomedical Convergence Models</h3>
+                        <div class="card-sub">Analytical Essay • 8 min read</div>
+                        <p class="card-text">An exploration into cellular behavior and degradation parameters observed under micro-gravity conditions.</p>
+                    </div>
+                    <a href="#" class="card-link">Read Blog Post ↗</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- MY PROJECTS & WORKS -->
+        <section id="projects">
+            <h2 class="section-title">My Projects & Works</h2>
+            <p class="section-subtitle">Engineering builds, data models, and software implementations.</p>
+            
+            <div class="grid">
+                <div class="card">
+                    <div>
+                        <span class="badge">Independent Project</span>
+                        <h3 class="card-title">Astrophysical Cellular Models</h3>
+                        <div class="card-sub">Python • Radiation Data Pipelines</div>
+                        <p class="card-text">Modeling biological tissue adaptations and cellular mutation rates under high-energy cosmic radiation conditions.</p>
+                    </div>
+                    <a href="#" class="card-link">View Project Repository ↗</a>
+                </div>
+                <div class="card">
+                    <div>
+                        <span class="badge">HealthTech Build</span>
+                        <h3 class="card-title">Longevity Statistical Forecasting</h3>
+                        <div class="card-sub">R • Public Health Registries</div>
+                        <p class="card-text">Custom statistical analysis model built to aggregate biometric markers and isolate key lifespan predictive factors.</p>
+                    </div>
+                    <a href="#" class="card-link">View Project Repository ↗</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- MY EXPERIENCES -->
+        <section id="experiences">
+            <h2 class="section-title">My Experiences</h2>
+            <p class="section-subtitle">Leadership roles, community hosting, and global research fellowships.</p>
+            
+            <div class="grid">
+                <div class="card">
+                    <div>
+                        <span class="badge">Leadership</span>
+                        <h3 class="card-title">Community Founder & Host</h3>
+                        <div class="card-sub">STEM Base Community • Present</div>
+                        <p class="card-text">Built and scaled an international network for student researchers, hosting hackathons and technical workshops.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div>
+                        <span class="badge">Global Fellowship</span>
+                        <h3 class="card-title">Research Team Lead</h3>
+                        <div class="card-sub">The New York Academy of Sciences (NYAS)</div>
+                        <p class="card-text">Led multinational student cohorts through research sprints covering ethical AI frameworks and human-centric medical design.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CERTIFICATIONS -->
+        <section id="certifications">
+            <h2 class="section-title">Certifications & Courses</h2>
+            <p class="section-subtitle">Formal training and verified domain credentials.</p>
+            
+            <div class="cert-grid">
+                <div class="cert-card">
+                    <div style="font-weight: 600; font-size: 1.05rem;">Computational Neuroscience</div>
+                    <div style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.25rem;">Verified Certification • Specialized Coursework</div>
+                </div>
+                <div class="cert-card">
+                    <div style="font-weight: 600; font-size: 1.05rem;">Genomic Data Science</div>
+                    <div style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.25rem;">Verified Certification • Bioinformatics Pipelines</div>
+                </div>
+                <div class="cert-card">
+                    <div style="font-weight: 600; font-size: 1.05rem;">Advanced HealthTech Systems</div>
+                    <div style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.25rem;">Verified Certification • Medical Data Standards</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MY YOUTUBE CHANNEL -->
+        <section id="youtube">
+            <h2 class="section-title">My YouTube Channel</h2>
+            <p class="section-subtitle">Video breakdowns of complex research, tutorial walkthroughs, and STEM discussions.</p>
+            
+            <div class="media-card">
+                <div>
+                    <span class="badge">Content Creation</span>
+                    <h3 class="card-title" style="font-size: 1.5rem;">STEM & Research Breakdown Channel</h3>
+                    <p class="card-text" style="margin-top: 0.75rem;">
+                        I produce video content explaining technical scientific papers, software engineering tools for bioinformatics, and guidance for emerging student researchers.
+                    </p>
+                </div>
+                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="card-link" style="font-size: 0.95rem;">
+                    Subscribe on YouTube ↗
+                </a>
+            </div>
+        </section>
+
+    </div>
+
+    <footer style="text-align: center; padding: 4rem 0 2rem; border-top: 1px solid var(--border-color); color: var(--text-secondary); font-size: 0.85rem;">
+        <p>© 2026 Kanika Sharma. Built with a modern minimalist layout.</p>
+    </footer>
+
+</body>
+</html>
